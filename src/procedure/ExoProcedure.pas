@@ -1,28 +1,60 @@
 program ExoProcedure;
 
+ type Tbook = record
+  titre : String;
+  auteur : String;
+  anne_de_pub : Integer;
+  prix : Real;
+ end;
 
-procedure SayHello(name: String);
+
+procedure printBook(book: Tbook) ;
 begin
-    WriteLn('Hello ', name);
+ WriteLn('Titre : ', book.titre);
+ WriteLn('Auteur : ', book.auteur);
+ WriteLn('Anne de pub : ', book.anne_de_pub);
+ WriteLn('Prix :', book.prix:0:2, ' $');
+ WriteLn;
 end;
 
-function Square(n: Integer): Integer;
+function CreateBook:Tbook;
+var book:Tbook;
+    begin
+        WriteLn('Enter the name of book');
+        ReadLn(book.titre);
+        WriteLn('Enter the name of auteur');
+        ReadLn(book.auteur);
+        WriteLn('Enter the date of pub');
+        ReadLn(book.anne_de_pub);
+        WriteLn('Enter the price');
+        ReadLn(book.prix);
+
+        CreateBook:=book;
+    end;
+
 var
-  y: Integer;
+n,i : Integer;
+book: Tbook;
+bibliotheque: array of Tbook;
 
 begin
-  Square := n * n;
-end;
+    repeat
+        WriteLn('how many books do u want to add? ');
+        ReadLn(n);
+    until ((n>=1) and (n<=50));
 
 
-var
-  x: Integer;
-  res: Integer;
+    SetLength(bibliotheque, n); 
 
-begin
-    SayHello('Anes');
-    Write('Please zrite the vqlue for n: ');
-    Read(x);
-    res := Square(x);
-    WriteLn('Result of square ', x, ' is ', res);
+        for i:=0 to n-1 do
+        begin
+            WriteLn('Livre ',i+1,':');
+            bibliotheque[i] := CreateBook;
+        end;
+
+    for i:=0 to n-1 do
+    begin
+        WriteLn('Livre ',i+1,':');
+        printBook(bibliotheque[i]);
+    end;
 end.
