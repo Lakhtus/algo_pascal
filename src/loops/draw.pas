@@ -1,6 +1,5 @@
 program draw;
 
-
 procedure DrawDiamond(size : Integer ; ch: Char);
 var
 i,j :Integer;
@@ -18,6 +17,7 @@ begin
         end;
         WriteLn();
     end;
+
     for i:=size-1 downto 1 do
     begin
         for j:= 1 to (size-i)  do  
